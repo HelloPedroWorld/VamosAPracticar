@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -74,9 +75,14 @@ public class V1 extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnPotencia_actionPerformed(ActionEvent e) {
-		Numero n = new Numero(Double.parseDouble(txtNumero.getText()));
-		txtS.append("El resultado de su potencia es: " + n.Potenciar()+ "\n");
-		txtNumero.setText("");
-		txtNumero.requestFocus();
+		try {
+			Numero n = new Numero(Double.parseDouble(txtNumero.getText()));
+			txtS.append("El resultado de su potencia es: " + n.Potenciar()+ "\n");
+			txtNumero.setText("");
+			txtNumero.requestFocus();
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(this, "Dejo el espacio en blanco");
+		}
+		
 	}
 }

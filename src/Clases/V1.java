@@ -10,8 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class V1 extends JFrame {
+public class V1 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -47,7 +49,7 @@ public class V1 extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		lblNewLabel = new JLabel("Nmerro");
+		lblNewLabel = new JLabel("Número");
 		lblNewLabel.setBounds(22, 25, 46, 14);
 		contentPane.add(lblNewLabel);
 		
@@ -56,7 +58,8 @@ public class V1 extends JFrame {
 		contentPane.add(txtNumero);
 		txtNumero.setColumns(10);
 		
-		btnPotencia = new JButton("New button");
+		btnPotencia = new JButton("Potenciar");
+		btnPotencia.addActionListener(this);
 		btnPotencia.setBounds(255, 21, 89, 23);
 		contentPane.add(btnPotencia);
 		
@@ -64,5 +67,16 @@ public class V1 extends JFrame {
 		txtS.setBounds(10, 80, 380, 136);
 		contentPane.add(txtS);
 
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPotencia) {
+			do_btnPotencia_actionPerformed(e);
+		}
+	}
+	protected void do_btnPotencia_actionPerformed(ActionEvent e) {
+		Numero n = new Numero(Double.parseDouble(txtNumero.getText()));
+		txtS.append("El resultado de su potencia es: " + n.Potenciar()+ "\n");
+		txtNumero.setText("");
+		txtNumero.requestFocus();
 	}
 }
